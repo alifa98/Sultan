@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\FinalCLang.dir/objects.a
-C:\wbs\bin\ar.exe cr CMakeFiles\FinalCLang.dir/objects.a @CMakeFiles\FinalCLang.dir\objects1.rsp
-C:\wbs\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\FinalCLang.dir/objects.a -Wl,--no-whole-archive  -o FinalCLang.exe -Wl,--out-implib,libFinalCLang.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\FinalCLang.dir\linklibs.rsp

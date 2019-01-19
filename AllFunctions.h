@@ -1,8 +1,0 @@
-//
-// Created by Ali on 1/19/2019.
-//
-
-#ifndef FINALCLANG_ALLFUNCTIONS_H
-#define FINALCLANG_ALLFUNCTIONS_H
-
-#endif //FINALCLANG_ALLFUNCTIONS_H
