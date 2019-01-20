@@ -102,14 +102,19 @@ void createQuestionsLinkedList(char Name[MAX_NAME], int Mode)
 
         struct decision * tempdec;
         tempdec = (struct decision *)malloc(sizeof(struct decision));
-        fgets(&tempdec->q, 200, fp);
-        fgets(&tempdec->a1, 200, fp);
-        fscanf(fp, "%d %d %d", &tempdec->alp, &tempdec->a1c, &tempdec->a1t);
-        fgets(&tempdec->a2, 200, fp);
+        fgets(&(tempdec->q), 200, fp);
+        fgets(&(tempdec->a1), 200, fp);
+        fscanf(fp, "%d %d %d\n", &tempdec->alp, &tempdec->a1c, &tempdec->a1t);
+        fgets(&(tempdec->a2), 200, fp);
         fscanf(fp, "%d %d %d", &tempdec->a2p, &tempdec->a2c, &tempdec->a2t);
-        tempdec->qindex = i
+        tempdec->qindex = i;
         tempdec->probability = probabilities[i];
         tempdec->next = NULL;
+        fclose(fp);
+
+        #if DEBUG
+        printf("index = %d %s %s %d %d %d %s %d %d %d, prob=%d\n", tempdec->qindex, tempdec->q, tempdec->a1, tempdec->alp, tempdec->a1c, tempdec->a1t, tempdec->a2, tempdec->a2p, tempdec->a2c, tempdec->a2t, probabilities[i]);
+        #endif // DEBUG
 
         struct decision *p = qlist;
 

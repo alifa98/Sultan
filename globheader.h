@@ -4,7 +4,7 @@
 #include <string.h>
 #define MAX_NAME 50
 #define Q_NUMBERS 7
-
+#define DEBUG 1
 //Structures
 struct usersaves
 {
