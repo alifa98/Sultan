@@ -67,6 +67,10 @@ void createQuestionsLinkedList(char Name[MAX_NAME], int Mode)
         for(int i = 0 ; i < Q_NUMBERS; i++)
             probabilities[i]=userinfo.prob[i];
         fclose(fp);
+
+        GlobalUserCurrentInfo.people = userinfo.people;
+        GlobalUserCurrentInfo.court = userinfo.court;
+        GlobalUserCurrentInfo.treasury = userinfo.treasury;
     }
     else if(Mode == 2)
     {
@@ -79,6 +83,10 @@ void createQuestionsLinkedList(char Name[MAX_NAME], int Mode)
         for(int i = 0 ; i < Q_NUMBERS; i++)
             probabilities[i]=userinfo.prob[i];
         fclose(fp);
+
+        GlobalUserCurrentInfo.people = userinfo.people;
+        GlobalUserCurrentInfo.court = userinfo.court;
+        GlobalUserCurrentInfo.treasury = userinfo.treasury;
     }
 
     char choicesList[Q_NUMBERS][60];
@@ -115,7 +123,6 @@ void createQuestionsLinkedList(char Name[MAX_NAME], int Mode)
         #if DEBUG
         printf("index = %d %s %s %d %d %d %s %d %d %d, prob=%d\n", tempdec->qindex, tempdec->q, tempdec->a1, tempdec->alp, tempdec->a1c, tempdec->a1t, tempdec->a2, tempdec->a2p, tempdec->a2c, tempdec->a2t, probabilities[i]);
         #endif // DEBUG
-
         struct decision *p = qlist;
 
         if(p == NULL){

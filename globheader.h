@@ -4,7 +4,7 @@
 #include <string.h>
 #define MAX_NAME 50
 #define Q_NUMBERS 7
-#define DEBUG 1
+#define DEBUG 0
 //Structures
 struct usersaves
 {
@@ -34,20 +34,29 @@ struct ScoreList
     char name[MAX_NAME];
     int score;
 };
-
+struct effect
+{
+    int p1;
+    int c1;
+    int t1;
+    int p2;
+    int c2;
+    int t2;
+};
 extern struct decision *qlist;
-
+extern struct usersaves GlobalUserCurrentInfo;
 //Functions
 void Play(char Name[MAX_NAME], int Mode); // 1 = whit temp file , 2 = with saved file , 0 = New Game;
 int isExistUser(char Name[MAX_NAME]);
 void createUser(char Name[MAX_NAME]);
 void deleteZeroProbabilityQuestions();
-void printRandomQuestion(); //this decrease probability of question for next time.
+struct effect printRandomQuestion(); //this decrease probability of question for next time.
 int QListIsEmpty();
 void printSortedUsers(); //fetch score.bin and advance sort.
-
+int getProbByIndex(int index);
+void printTopRecords();
 //Saver
-void saveGame(char Name[MAX_NAME]);
+void saveGame(char Name[MAX_NAME], int State);
 void saveTemp(char Name[MAX_NAME]);
 
 //File Handel
