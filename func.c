@@ -1,4 +1,6 @@
 #include "globheader.h"
-void Play(int Mode){
-    printf("Played %d\n",Mode);
+Play(char Name[MAX_NAME], int Mode){
+    if(Mode == 1){
+
+    }
 }

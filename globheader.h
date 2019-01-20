@@ -32,7 +32,7 @@ struct ScoreList{
     int score;
 };
 //Functions
-void Play(int Mode); // 1 = whit temp file , 2 = with saved file , 0 = New Game;
+void Play(char Name[MAX_NAME], int Mode); // 1 = whit temp file , 2 = with saved file , 0 = New Game;
 int isExistUser(char Name[MAX_NAME]);
 void createUser(char Name[MAX_NAME]);
 void deleteZeroProbabilityQuestions();
@@ -45,7 +45,8 @@ void saveGame(char Name[MAX_NAME]);
 void saveTemp(char Name[MAX_NAME]);
 
 //File Handel
-void createQuestionsLinkedList();
+void createQuestionsLinkedList(int Mode); //1 means create from temp file ,  2 means saved file and 0 means new game
 int hasResumableGame(char Name[MAX_NAME]);
 int isExistTemp(char Name[MAX_NAME]);
 void deleteTemp(char Name[MAX_NAME]);
+void scoreSubmiter(char Name[], int score);

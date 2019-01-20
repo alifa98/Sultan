@@ -34,10 +34,10 @@ int hasResumableGame(char Name[]){
 }
 void scoreSubmiter(char Name[], int score){
     struct ScoreList info;
-    info.name = Name;
+    strcpy(info.name, Name);
     info.score = score;
     char fname[] = "Data\\scores.bin";
-    FILE* fp = fopen(fname,"ab")
+    FILE* fp = fopen(fname,"ab");
     fwrite(&info, sizeof(info), 1, fp);
     fclose(fp);
 }

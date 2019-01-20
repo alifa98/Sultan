@@ -14,11 +14,11 @@ int main()
         scanf("%d", &tempdec);
 
         if(tempdec == 1){
-            Play(1);
+            Play(name, 1);
         }
         else if(tempdec == 2){
             deleteTemp(name);
-            Play(0);
+            Play(name, 0);
         }else{
             exit(0);
         }
@@ -30,16 +30,16 @@ int main()
             scanf("%d", &dec);
 
             if(dec == 1){
-                Play(2);
+                Play(name, 2);
             }else if(dec == 2){
                 deleteTemp(name);
-                Play(0);
+                Play(name, 0);
             }else{
                 exit(0);
             }
         }else{
             printf("New Game Started ...\n");
-            Play(0);
+            Play(name, 0);
         }
 
     }
