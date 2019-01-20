@@ -31,7 +31,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="filehandeler.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="func.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="globheader.h" />
 		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="saver.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

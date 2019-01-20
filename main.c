@@ -1,17 +1,5 @@
 #include "globheader.h"
-struct decision{
-    char q[200];
-    char a1[200];
-    int alp;
-    int a1c;
-    int a1t;
-    char a2[200];
-    int a2p;
-    int a2c;
-    int a2t;
-    int probability;
-    struct decision * next;
-};
+
 struct decision *qlist = NULL;
 int main()
 {
@@ -49,6 +37,9 @@ int main()
             }else{
                 exit(0);
             }
+        }else{
+            printf("New Game Started ...\n");
+            Play(0);
         }
 
     }
