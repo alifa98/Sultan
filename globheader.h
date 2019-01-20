@@ -6,14 +6,16 @@
 #define Q_NUMBERS 7
 
 //Structures
-struct usersaves{
+struct usersaves
+{
     int resumable;
     int prob[Q_NUMBERS];
     int people;
     int court;
     int treasury;
 };
-struct decision{
+struct decision
+{
     int qindex;
     char q[200];
     char a1[200];
@@ -27,10 +29,14 @@ struct decision{
     int probability;
     struct decision * next;
 };
-struct ScoreList{
+struct ScoreList
+{
     char name[MAX_NAME];
     int score;
 };
+
+extern struct decision *qlist;
+
 //Functions
 void Play(char Name[MAX_NAME], int Mode); // 1 = whit temp file , 2 = with saved file , 0 = New Game;
 int isExistUser(char Name[MAX_NAME]);
@@ -45,7 +51,7 @@ void saveGame(char Name[MAX_NAME]);
 void saveTemp(char Name[MAX_NAME]);
 
 //File Handel
-void createQuestionsLinkedList(int Mode); //1 means create from temp file ,  2 means saved file and 0 means new game
+void createQuestionsLinkedList(char Name[MAX_NAME], int Mode); //1 means create from temp file ,  2 means saved file and 0 means new game
 int hasResumableGame(char Name[MAX_NAME]);
 int isExistTemp(char Name[MAX_NAME]);
 void deleteTemp(char Name[MAX_NAME]);
