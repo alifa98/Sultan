@@ -13,15 +13,19 @@ int main()
     int firstMenuDic;
     while(1)
     {
-        printf("1)Play Game\n2)See TOP 10\n3)exit\n");
+        printf("1)Play Game\n2)See TOP 10\n3)Create Question\n4)exit\n");
         scanf("%d", &firstMenuDic);
         if(firstMenuDic == 2)
         {
             printTopRecords();
         }
-        else if(firstMenuDic == 3)
+        else if(firstMenuDic == 4)
         {
             exit(0);
+        }
+        else if(firstMenuDic == 3)
+        {
+            CreateQuestion();
         }
         else if(firstMenuDic == 1)
         {

@@ -59,6 +59,7 @@ void printSortedUsers(); //fetch score.bin and advance sort.
 int getProbByIndex(int index);
 void printTopRecords();
 void RandomAdvance();
+void CreateQuestion();
 
 //Saver
 void saveGame(char Name[MAX_NAME], int State);

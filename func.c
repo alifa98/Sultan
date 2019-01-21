@@ -24,7 +24,8 @@ void Play(char Name[MAX_NAME], int Mode)
     while(1)
     {
         deleteZeroProbabilityQuestions();
-        if(QListIsEmpty()){
+        if(QListIsEmpty())
+        {
             createQuestionsLinkedList(Name, 0);
         }
 
@@ -119,7 +120,7 @@ int QListIsEmpty()
 }
 void deleteZeroProbabilityQuestions()
 {
-    struct decision * ptempo;
+    struct decision *ptempo;
     while(1)
     {
         if(qlist->probability == 0)
@@ -150,7 +151,7 @@ void deleteZeroProbabilityQuestions()
 }
 int getProbByIndex(int index)
 {
-    struct decision * p = qlist;
+    struct decision *p = qlist;
     if(p != NULL)
     {
         if(p->qindex == index)
@@ -169,13 +170,13 @@ int swapable(struct ScoreList a, struct ScoreList b)
     else if( a.p == b.p && a.c == b.c && a.t < b.t )
         return 1;
 
-        return 0;
+    return 0;
 }
 void printTopRecords()
 {
     printf("\n********************* TOP 10 RECORDS *********************\n");
-    struct ScoreList* arr = NULL;
-    FILE* fp = fopen("Data\\TopRec.bin","rb");
+    struct ScoreList *arr = NULL;
+    FILE *fp = fopen("Data\\TopRec.bin","rb");
     if(fp == NULL)
     {
         printf("Unable To Open Records File.\n");
@@ -187,7 +188,8 @@ void printTopRecords()
     {
         struct ScoreList te;
         fread(&te, sizeof(struct ScoreList), 1, fp);
-        if(feof(fp)){
+        if(feof(fp))
+        {
             break;
         }
         arr = (struct ScoreList*)realloc(arr, sizeof(struct ScoreList)*(n+1) );
@@ -215,7 +217,7 @@ void printTopRecords()
 struct effect printRandomQuestion()
 {
     int nodeNumber = 0;
-    struct decision * p = qlist;
+    struct decision *p = qlist;
     while(p != NULL)
     {
         nodeNumber++;
@@ -269,6 +271,63 @@ void RandomAdvance()
             printf("\nImportant NEWS :: Today the court's food was not good.\n");
             GlobalUserCurrentInfo.people = GlobalUserCurrentInfo.people +5;
             GlobalUserCurrentInfo.court = GlobalUserCurrentInfo.court -5;
+            break;
+        }
+    }
+}
+void CreateQuestion()
+{
+    while(1)
+    {
+        char filenname[20], question[200], option1[200], option2[200];
+        int p1, c1, t1, p2, c2, t2;
+
+        printf("\nEnter File Name (Max 20 character e.g : myq.txt) : \n");
+        gets(filenname);
+        gets(filenname);
+
+        char savePath[100] = "Data\\questions\\";
+        strcat(savePath, filenname);
+
+        printf("Enter Question : \n");
+        gets(question);
+
+        printf("Enter Option #1 : \n");
+        gets(option1);
+
+        printf("Enter Effect On Parameters Of Option #1 : (people court treasury)\n");
+        scanf("%d %d %d",&p1, &c1, &t1);
+
+        printf("Enter Option #2 : \n");
+        gets(option2);
+        gets(option2);
+
+        printf("Enter Effect On Parameters Of Option #2 : (people court treasury)\n");
+        scanf("%d %d %d",&p2, &c2, &t2);
+
+        FILE *fp = fopen(savePath,"w");
+        if(fp == NULL){
+            printf("ERROR IN CREATING QUESTION TEXT FILE\n");
+            break;
+        }
+
+        fprintf(fp,"%s\n%s\n%d\n%d\n%d\n%s\n%d\n%d\n%d",question, option1, p1, c1, t1, option2, p2, c2, t2);
+        printf("Question File Created ...\n");
+        fclose(fp);
+
+        FILE *fpc = fopen("Data\\questions\\CHOICES.txt","a");
+        if(fpc == NULL){
+            printf("ERROR IN ADDING QUESTION TO CHOICES.TXT\n");
+            break;
+        }
+        fprintf(fpc,"\n%s", &filenname);
+        printf("Question File Name Added to Choices !!\n");
+        fclose(fpc);
+
+        char yes;
+        printf("Are You Want To Continue ? y=Yess n=No \n");
+        scanf(" %c", &yes);
+        if(yes != 'y' && yes != 'Y'){
             break;
         }
     }
