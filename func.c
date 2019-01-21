@@ -28,6 +28,7 @@ void Play(char Name[MAX_NAME], int Mode)
             createQuestionsLinkedList(Name, 0);
 
         saveTemp(Name);
+        printf("Your State : People=%d%%, Court=%d%%, Treasury=%d%%.\n",GlobalUserCurrentInfo.people, GlobalUserCurrentInfo.court, GlobalUserCurrentInfo.treasury);
         struct effect eff = printRandomQuestion();
 
         int temporaryVarForDecision;
@@ -41,7 +42,7 @@ void Play(char Name[MAX_NAME], int Mode)
 
             saveTemp(Name);
 
-            if(GlobalUserCurrentInfo.people+GlobalUserCurrentInfo.court+lobalUserCurrentInfo.treasury < 30 || GlobalUserCurrentInfo.people <= 0 || GlobalUserCurrentInfo.court <= 0 || lobalUserCurrentInfo.treasury <= 0)
+            if(GlobalUserCurrentInfo.people+GlobalUserCurrentInfo.court+GlobalUserCurrentInfo.treasury < 30 || GlobalUserCurrentInfo.people <= 0 || GlobalUserCurrentInfo.court <= 0 || GlobalUserCurrentInfo.treasury <= 0)
             {
                 printf("\n**** GAME OVER **** \nDo You Want to Save This Game? 1=Yes 0=No\n");
                 scanf("%d", &temporaryVarForDecision);
@@ -53,6 +54,7 @@ void Play(char Name[MAX_NAME], int Mode)
                 }
                 else
                 {
+                    deleteTemp(Name);
                     printf("*Game Not Saved.\n");
                 }
                 break;
@@ -67,7 +69,7 @@ void Play(char Name[MAX_NAME], int Mode)
 
             saveTemp(Name);
 
-            if(GlobalUserCurrentInfo.people+GlobalUserCurrentInfo.court+lobalUserCurrentInfo.treasury < 30 || GlobalUserCurrentInfo.people <= 0 || GlobalUserCurrentInfo.court <= 0 || lobalUserCurrentInfo.treasury <= 0)
+            if(GlobalUserCurrentInfo.people+GlobalUserCurrentInfo.court+GlobalUserCurrentInfo.treasury < 30 || GlobalUserCurrentInfo.people <= 0 || GlobalUserCurrentInfo.court <= 0 || GlobalUserCurrentInfo.treasury <= 0)
             {
                 printf("\n****GAME OVER **** \nDo You Want to Save This Game? 1=Yes 0=No\n");
                 scanf("%d", &temporaryVarForDecision);
@@ -79,6 +81,7 @@ void Play(char Name[MAX_NAME], int Mode)
                 }
                 else
                 {
+                    deleteTemp(Name);
                     printf("*Game Not Saved.\n");
                 }
                 break;
@@ -95,11 +98,13 @@ void Play(char Name[MAX_NAME], int Mode)
             }
             else
             {
+                deleteTemp(Name);
                 printf("*Game Not Saved.\n");
             }
             break;
         }
 
+        RandomAdvance();
     }
 }
 int QListIsEmpty()
@@ -153,4 +158,40 @@ int getProbByIndex(int index)
 void printTopRecords()
 {
     printf("\n TOP RECORDS : \n");
+}
+
+struct effect printRandomQuestion(){
+    int nodeNumber = 0;
+    struct decision * p = qlist;
+    while(p != NULL){
+        nodeNumber++;
+        p = p->next;
+    }
+
+    int randomNodeIndex = rand() % nodeNumber;
+
+    p = qlist;
+    for(int i=0; i < randomNodeIndex; i++){
+        p = p->next;
+    }
+
+    printf("\n%s",p->q);
+    printf("1 ) %s",p->a1);
+    printf("2 ) %s",p->a2);
+
+    p->probability = (p->probability) -1;
+
+    struct effect effOfQues;
+    effOfQues.p1 = p->a1p;
+    effOfQues.c1 = p->a1c;
+    effOfQues.t1 = p->a1t;
+    effOfQues.p2 = p->a2p;
+    effOfQues.c2 = p->a2c;
+    effOfQues.t2 = p->a2t;
+
+    return effOfQues;
+}
+void RandomAdvance(){
+    int r = rand() % 100;
+
 }

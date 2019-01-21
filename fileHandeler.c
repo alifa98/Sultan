@@ -39,16 +39,6 @@ int hasResumableGame(char Name[])
     fclose(fp);
     return info.resumable;
 }
-void scoreSubmiter(char Name[], int score)
-{
-    struct ScoreList info;
-    strcpy(info.name, Name);
-    info.score = score;
-    char fname[] = "Data\\scores.bin";
-    FILE* fp = fopen(fname,"ab");
-    fwrite(&info, sizeof(info), 1, fp);
-    fclose(fp);
-}
 void createQuestionsLinkedList(char Name[MAX_NAME], int Mode)
 {
     int probabilities[Q_NUMBERS];
@@ -112,7 +102,7 @@ void createQuestionsLinkedList(char Name[MAX_NAME], int Mode)
         tempdec = (struct decision *)malloc(sizeof(struct decision));
         fgets(&(tempdec->q), 200, fp);
         fgets(&(tempdec->a1), 200, fp);
-        fscanf(fp, "%d %d %d\n", &tempdec->alp, &tempdec->a1c, &tempdec->a1t);
+        fscanf(fp, "%d %d %d\n", &tempdec->a1p, &tempdec->a1c, &tempdec->a1t);
         fgets(&(tempdec->a2), 200, fp);
         fscanf(fp, "%d %d %d", &tempdec->a2p, &tempdec->a2c, &tempdec->a2t);
         tempdec->qindex = i;

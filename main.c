@@ -2,6 +2,9 @@
 
 int main()
 {
+    //Random Seed Initialization
+    srand(time(NULL));
+
     printf("#########################################\n#\t\t\t\t\t#\n#\t\tWlcome To Game.\t\t#\n#\t\t\t\t\t#\n#########################################\n");
     char name[MAX_NAME];
     printf("\nEnter Your Name : ");
