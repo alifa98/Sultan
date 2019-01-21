@@ -24,8 +24,11 @@ void Play(char Name[MAX_NAME], int Mode)
     while(1)
     {
         deleteZeroProbabilityQuestions();
-        if(QListIsEmpty())
+        if(QListIsEmpty()){
             createQuestionsLinkedList(Name, 0);
+        }
+
+
         RandomAdvance();
         saveTemp(Name);
         printf("Your State : People=%d%%, Court=%d%%, Treasury=%d%%.\n",GlobalUserCurrentInfo.people, GlobalUserCurrentInfo.court, GlobalUserCurrentInfo.treasury);
