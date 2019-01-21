@@ -26,7 +26,7 @@ void Play(char Name[MAX_NAME], int Mode)
         deleteZeroProbabilityQuestions();
         if(QListIsEmpty())
             createQuestionsLinkedList(Name, 0);
-
+        RandomAdvance();
         saveTemp(Name);
         printf("Your State : People=%d%%, Court=%d%%, Treasury=%d%%.\n",GlobalUserCurrentInfo.people, GlobalUserCurrentInfo.court, GlobalUserCurrentInfo.treasury);
         struct effect eff = printRandomQuestion();
@@ -44,6 +44,7 @@ void Play(char Name[MAX_NAME], int Mode)
 
             if(GlobalUserCurrentInfo.people+GlobalUserCurrentInfo.court+GlobalUserCurrentInfo.treasury < 30 || GlobalUserCurrentInfo.people <= 0 || GlobalUserCurrentInfo.court <= 0 || GlobalUserCurrentInfo.treasury <= 0)
             {
+                printf("Your State : People=%d%%, Court=%d%%, Treasury=%d%%.\n",GlobalUserCurrentInfo.people, GlobalUserCurrentInfo.court, GlobalUserCurrentInfo.treasury);
                 printf("\n**** GAME OVER **** \nDo You Want to Save This Game? 1=Yes 0=No\n");
                 scanf("%d", &temporaryVarForDecision);
 
@@ -71,6 +72,7 @@ void Play(char Name[MAX_NAME], int Mode)
 
             if(GlobalUserCurrentInfo.people+GlobalUserCurrentInfo.court+GlobalUserCurrentInfo.treasury < 30 || GlobalUserCurrentInfo.people <= 0 || GlobalUserCurrentInfo.court <= 0 || GlobalUserCurrentInfo.treasury <= 0)
             {
+                printf("Your State : People=%d%%, Court=%d%%, Treasury=%d%%.\n",GlobalUserCurrentInfo.people, GlobalUserCurrentInfo.court, GlobalUserCurrentInfo.treasury);
                 printf("\n****GAME OVER **** \nDo You Want to Save This Game? 1=Yes 0=No\n");
                 scanf("%d", &temporaryVarForDecision);
 
@@ -89,6 +91,7 @@ void Play(char Name[MAX_NAME], int Mode)
         }
         else
         {
+            printf("Your State : People=%d%%, Court=%d%%, Treasury=%d%%.\n",GlobalUserCurrentInfo.people, GlobalUserCurrentInfo.court, GlobalUserCurrentInfo.treasury);
             printf("Do You Want to Save This Game? 1=Yes 0=No\n");
             scanf("%d", &temporaryVarForDecision);
             if(temporaryVarForDecision)
@@ -103,8 +106,6 @@ void Play(char Name[MAX_NAME], int Mode)
             }
             break;
         }
-
-        RandomAdvance();
     }
 }
 int QListIsEmpty()
@@ -155,15 +156,65 @@ int getProbByIndex(int index)
     }
     return 0;
 }
+
+int swapable(struct ScoreList a, struct ScoreList b)
+{
+    if (a.p < b.p)
+        return 1;
+    else if(a.p == b.p && a.c < b.c)
+        return 1;
+    else if( a.p == b.p && a.c == b.c && a.t < b.t )
+        return 1;
+
+        return 0;
+}
 void printTopRecords()
 {
-    printf("\n TOP RECORDS : \n");
+    printf("\n********************* TOP 10 RECORDS *********************\n");
+    struct ScoreList* arr = NULL;
+    FILE* fp = fopen("Data\\TopRec.bin","rb");
+    if(fp == NULL)
+    {
+        printf("Unable To Open Records File.\n");
+        exit(-1);
+    }
+    int n = 0;
+
+    while(1)
+    {
+        struct ScoreList te;
+        fread(&te, sizeof(struct ScoreList), 1, fp);
+        if(feof(fp)){
+            break;
+        }
+        arr = (struct ScoreList*)realloc(arr, sizeof(struct ScoreList)*(n+1) );
+        arr[n] = te;
+        n++;
+    }
+    fclose(fp);
+    for (int i = 0; i < n-1; i++)
+        for (int j = 0; j < n-i-1; j++)
+        {
+            if( swapable(arr[j], arr[j+1]) )
+            {
+                struct ScoreList m = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = m;
+            }
+        }
+    printf("\n# | Name - People - Court - treasury\n");
+    for(int i=0; i < 10 && i < n ; ++i)
+        printf("%-2d| %s - %d - %d - %d\n",i+1,arr[i].name, arr[i].p, arr[i].c, arr[i].t);
+    free(arr);
+    printf("\n");
 }
 
-struct effect printRandomQuestion(){
+struct effect printRandomQuestion()
+{
     int nodeNumber = 0;
     struct decision * p = qlist;
-    while(p != NULL){
+    while(p != NULL)
+    {
         nodeNumber++;
         p = p->next;
     }
@@ -171,7 +222,8 @@ struct effect printRandomQuestion(){
     int randomNodeIndex = rand() % nodeNumber;
 
     p = qlist;
-    for(int i=0; i < randomNodeIndex; i++){
+    for(int i=0; i < randomNodeIndex; i++)
+    {
         p = p->next;
     }
 
@@ -191,12 +243,15 @@ struct effect printRandomQuestion(){
 
     return effOfQues;
 }
-void RandomAdvance(){
+void RandomAdvance()
+{
     int r1 = rand() % 100;
-    if(r1 <= 7){
+    if(r1 <= 7)
+    {
         int r2 = rand() % 3;
 
-        switch(r2){
+        switch(r2)
+        {
         case 0:
             printf("\nBAD NEWS :: Unfortunately thieves attacked the treasury.\n");
             GlobalUserCurrentInfo.treasury = GlobalUserCurrentInfo.treasury -10;

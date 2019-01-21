@@ -111,7 +111,7 @@ void createQuestionsLinkedList(char Name[MAX_NAME], int Mode)
         fclose(fp);
 
         #if DEBUG
-        printf("index = %d %s %s %d %d %d %s %d %d %d, prob=%d\n", tempdec->qindex, tempdec->q, tempdec->a1, tempdec->alp, tempdec->a1c, tempdec->a1t, tempdec->a2, tempdec->a2p, tempdec->a2c, tempdec->a2t, probabilities[i]);
+        printf("index = %d %s %s %d %d %d %s %d %d %d, prob=%d\n", tempdec->qindex, tempdec->q, tempdec->a1, tempdec->a1p, tempdec->a1c, tempdec->a1t, tempdec->a2, tempdec->a2p, tempdec->a2c, tempdec->a2t, probabilities[i]);
         #endif // DEBUG
         struct decision *p = qlist;
 

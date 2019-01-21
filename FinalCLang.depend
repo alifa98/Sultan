@@ -1,19 +1,19 @@
 # depslib dependency file v1.0
-1548035119 source:d:\projects\finalclang\func.c
+1548042761 source:d:\projects\finalclang\func.c
 	"globheader.h"
 
-1548035544 d:\projects\finalclang\globheader.h
+1548042800 d:\projects\finalclang\globheader.h
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	<string.h>
 
-1548033603 source:d:\projects\finalclang\main.c
+1548043102 source:d:\projects\finalclang\main.c
 	"globheader.h"
 
-1548033846 source:d:\projects\finalclang\saver.c
+1548041306 source:d:\projects\finalclang\saver.c
 	"globheader.h"
 
-1548033481 source:d:\projects\finalclang\filehandeler.c
+1548039074 source:d:\projects\finalclang\filehandeler.c
 	"globheader.h"
 

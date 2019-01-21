@@ -68,6 +68,6 @@ void scoreSubmiter(char Name[], int p, int c, int t){
     m.p = p;
     m.c = c;
     m.t = t;
-    fwrite(&m, sizeof(m), 1, fp);
+    fwrite(&m, sizeof(struct ScoreList), 1, fp);
     fclose(fp);
 }

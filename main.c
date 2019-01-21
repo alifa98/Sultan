@@ -5,7 +5,7 @@ int main()
     //Random Seed Initialization
     srand(time(NULL));
 
-    printf("#########################################\n#\t\t\t\t\t#\n#\t\tWlcome To Game.\t\t#\n#\t\t\t\t\t#\n#########################################\n");
+    printf("#########################################\n#\t\t\t\t\t#\n#\tWlcome To Sultan Game.\t\t#\n#\t\t\t\t\t#\n#########################################\n");
     char name[MAX_NAME];
     printf("\nEnter Your Name : ");
     scanf("%s", &name);
@@ -60,7 +60,6 @@ int main()
                     }
                     else if(dec == 2)
                     {
-                        deleteTemp(name);
                         Play(name, 0);
                     }
                     else
