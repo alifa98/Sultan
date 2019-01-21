@@ -51,7 +51,7 @@ int main()
                 if(hasResumableGame(name))
                 {
                     int dec;
-                    printf("1)Resume Last Saved Game \n 2)Start new game :| \n");
+                    printf("1)Resume Last Saved Game \n2)Start new game :| \n");
                     scanf("%d", &dec);
 
                     if(dec == 1)

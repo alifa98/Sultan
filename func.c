@@ -192,6 +192,26 @@ struct effect printRandomQuestion(){
     return effOfQues;
 }
 void RandomAdvance(){
-    int r = rand() % 100;
+    int r1 = rand() % 100;
+    if(r1 <= 7){
+        int r2 = rand() % 3;
 
+        switch(r2){
+        case 0:
+            printf("\nBAD NEWS :: Unfortunately thieves attacked the treasury.\n");
+            GlobalUserCurrentInfo.treasury = GlobalUserCurrentInfo.treasury -10;
+            GlobalUserCurrentInfo.court = GlobalUserCurrentInfo.court +5;
+            break;
+        case 1:
+            printf("\nGOOD NEWS :: A treasure was found in the northern hills.\n");
+            GlobalUserCurrentInfo.treasury = GlobalUserCurrentInfo.treasury +10;
+            GlobalUserCurrentInfo.people = GlobalUserCurrentInfo.people -5;
+            break;
+        case 2:
+            printf("\nImportant NEWS :: Today the court's food was not good.\n");
+            GlobalUserCurrentInfo.people = GlobalUserCurrentInfo.people +5;
+            GlobalUserCurrentInfo.court = GlobalUserCurrentInfo.court -5;
+            break;
+        }
+    }
 }

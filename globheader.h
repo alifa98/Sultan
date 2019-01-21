@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 #define MAX_NAME 50
-#define Q_NUMBERS 7
+#define Q_NUMBERS 8
 #define DEBUG 0
 //Structures
 struct usersaves
