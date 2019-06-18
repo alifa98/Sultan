@@ -4,7 +4,7 @@
 
 Final C Programming Project
 
-This is simple stategic game.
+This is simple strategic game.
 
 
 Professor: [Dr.Bakhshi](https://ceit.aut.ac.ir/~bakhshis/)
