@@ -1,6 +1,9 @@
 # C_Final
-### Soltan
+
+### Sultan
+
 Final C Programming Project
+
 This is simple stategic game.
 
 
