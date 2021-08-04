@@ -1,10 +1,6 @@
-# C_Final
+# Sultan
 
-### Sultan
-
-Final C Programming Project
-
-This is simple strategic game.
+This is simple strategic game which I call it "Sultan".
 
 
 Professor: [Dr.Bakhshi](https://ceit.aut.ac.ir/~bakhshis/)
